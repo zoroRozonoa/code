@@ -1,0 +1,18 @@
+syntax = "proto3";
+package vxlan_route;
+
+message InstanceIndex {
+	uint32 vni = 1;
+}
+
+//实例和OR绑定信息
+message VxlanOR {
+    InstanceIndex index = 1;
+	uint32 evlan_id = 2;
+	uint32 mc_id = 3;
+	uint32 vid = 7;
+	uint32 vrf = 4;
+	uint32 intf_id = 5;
+	uint32 ifx = 6;
+	bool anycast_gw = 8;
+}

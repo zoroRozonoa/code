@@ -1,0 +1,34 @@
+syntax = "proto3";
+package vxlan_bridge;
+
+message InstanceIndex {
+	uint32 vni = 1;
+}
+
+//VXLAN 实例信息
+message VxlanInstance {
+    InstanceIndex index = 1;
+	uint32 evlan_id = 2;
+	uint32 mc_id = 3;
+}
+
+message MemberIndex {
+	uint32 vni = 1;
+	int32 phyid = 2;
+}
+
+// vxlan实例AC组播成员信息
+message Instance_AC_Member {
+   MemberIndex index = 1;
+   uint32 vid = 2;
+   uint32 nhop_id = 3;
+}
+
+// vxlan实例PW组播成员信息
+message Instance_PW_Member {
+   MemberIndex index = 1;
+   uint32 vid = 2;
+   uint32 nhop_id = 3;
+   uint32 nh_cnt = 4;
+}
+
