@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+//DE端核心进程（SSD）写HOST的proto文件
+//主要处理VXLAN INTF核心业务AC、OT
+//AC业务包含：eport、nhop和match port
+//OT业务包含：eport、encap、mc nh
+package vxlan_intf;
+
+//AC eport资源
+message VxlanAcEportIndex {
+    int32 eport_id = 1;
+}
+
+message VxlanAcEport {
+    VxlanAcEportIndex index = 9;
+    int32 vid =1;
+    uint32 phyid = 2;
+    int32 nhop_id = 3;
+    int32 evlan_id = 4;
+}
+
+//AC nhop资源
+message VxlanAcNhopIndex {
+    int32 nhop_id = 1;
+}
+
+message VxlanAcNhop {
+    VxlanAcNhopIndex index = 9;
+    int32 vid = 1;
+    uint32 phyid = 2;
+}
+
+//AC match port
+message VxlanAcMatchIndex {
+    uint32 phyid= 1;
+}
+
+message VxlanAcMatch {
+    VxlanAcMatchIndex index = 9;
+    int32 eport_id = 1;
+}
+
+//OT eport资源
+message VxlanOtEportIndex {
+    int32 eport_id = 1;
+}
+
+message VxlanOtEport {
+    VxlanOtEportIndex index = 9;
+    int32 encap_id = 1;
+    int32 nh_fwd_type = 2;
+    int32 nh_fwd_id = 3;
+    uint32 remote = 4;
+    uint32 local = 5;
+}
+
+//OT encap资源
+message VxlanOtEncapIndex {
+    int32 encap_id = 1;
+}
+
+message VxlanOtEncap {
+    VxlanOtEncapIndex index = 9;
+    uint32 remote = 1;
+    uint32 local = 2;
+}
+
+//OT mc nh资源
+message VxlanOtMcnhIndex {
+    int32 nhop_id = 1;
+}
+
+message VxlanOtMcnh {
+    VxlanOtMcnhIndex index = 9;
+    int32 vid = 1;
+    uint32 phyid = 2;
+    int32 intf_id = 3;
+    uint32 vphyid = 4;
+    string mac = 5;
+}
+
